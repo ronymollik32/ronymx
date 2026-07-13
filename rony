@@ -1,0 +1,94 @@
+        open_ports = []
+        for port in ports:
+            try:
+                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                sock.settimeout(1)
+                result = sock.connect_ex((host, port))
+                if result == 0:
+                    open_ports.append(port)
+                    print(f"{G}[+] Port {port} OPEN{RESET}")
+                sock.close()
+            except:
+                pass
+        if not open_ports:
+            print(f"{R}[-] No open ports found.{RESET}")
+        return open_ports
+
+    def dns_lookup(self, domain):
+        print(f"{B}[*] DNS Lookup for {domain}{RESET}")
+        try:
+            ips = socket.gethostbyname_ex(domain)[2]
+            print(f"{G}[+] A Records: {ips}{RESET}")
+        except:
+            print(f"{R}[-] A Records not found{RESET}")
+        for q in ['MX', 'NS', 'TXT']:
+            try:
+                resolver = dns.resolver.Resolver()
+                resolver.nameservers = ['8.8.8.8']
+                ans = resolver.resolve(domain, q)
+                print(f"{G}[+] {q}: {[str(r) for r in ans]}{RESET}")
+            except:
+                pass
+
+# ===== মেনু =====
+def menu():
+    tool = RonyMX()
+    while True:
+        banner()
+        print(f"""
+{C}╔═══════════════════════════════════════════════════════════════╗
+{C}║                    SELECT AN OPTION                            ║
+{C}╠═══════════════════════════════════════════════════════════════╣
+{C}║  {W}1. Check System & Public IP{RESET}                              {C}║
+{C}║  {W}2. Website Info (DNS, Headers, CMS, Users){RESET}              {C}║
+{C}║  {W}3. Admin Panel Finder{RESET}                                  {C}║
+{C}║  {W}4. DDoS Attack (Layer 7){RESET}                               {C}║
+{C}║  {W}5. Secure Password Generator{RESET}                           {C}║
+{C}║  {W}6. IP Geolocation Lookup{RESET}                               {C}║
+{C}║  {W}7. DNS Records Lookup{RESET}                                  {C}║
+{C}║  {W}8. Hash Generator (MD5, SHA1, SHA256, SHA512){RESET}         {C}║
+{C}║  {W}9. Port Scanner{RESET}                                       {C}║
+{C}║  {W}10. Exit Tool{RESET}                                          {C}║
+{C}╚═══════════════════════════════════════════════════════════════╝
+{RESET}""")
+        choice = input(f"{Y}Select option >> {RESET}").strip()
+        
+        if choice == '1':
+            tool.check_ip()
+        elif choice == '2':
+            url = input(f"{Y}Enter website URL: {RESET}").strip()
+            tool.website_info(url)
+        elif choice == '3':
+            url = input(f"{Y}Enter website URL: {RESET}").strip()
+            tool.admin_finder(url)
+        elif choice == '4':
+            url = input(f"{Y}Enter target URL: {RESET}").strip()
+            threads = int(input(f"{Y}Threads (default 50): {RESET}") or 50)
+            duration = int(input(f"{Y}Duration in seconds (default 30): {RESET}") or 30)
+            tool.ddos_attack(url, threads, duration)
+        elif choice == '5':
+            length = int(input(f"{Y}Password length (default 16): {RESET}") or 16)
+            tool.password_generator(length)
+        elif choice == '6':
+            tool.check_ip()
+        elif choice == '7':
+            domain = input(f"{Y}Enter domain: {RESET}").strip()
+            tool.dns_lookup(domain)
+        elif choice == '8':
+            text = input(f"{Y}Enter text to hash: {RESET}").strip()
+            tool.hash_generator(text)
+        elif choice == '9':
+            host = input(f"{Y}Enter host/IP: {RESET}").strip()
+            ports = input(f"{Y}Ports (comma separated, default 21,22,23,25,53,80,443): {RESET}").strip()
+            if not ports:
+                ports = '21,22,23,25,53,80,443'
+            tool.port_scanner(host, ports)
+        elif choice == '10':
+            print(f"{R}Exiting...{RESET}")
+            sys.exit()
+        else:
+            print(f"{R}Invalid option!{RESET}")
+        input(f"{Y}\nPress Enter to continue...{RESET}")
+
+if __name__ == "__main__":
+    menu()
