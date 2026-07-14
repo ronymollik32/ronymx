@@ -31,6 +31,7 @@ If you prefer to set it up step-by-step:
 pkg update && pkg upgrade -y
 pkg install git python -y
 pip install requests dnspython python-whois
+pkg install iputils-ping
 ```
 
 ### 2. Clone the Repository
