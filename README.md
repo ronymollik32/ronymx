@@ -1,49 +1,57 @@
 # ⚡ ronymx
 
-A powerful and lightweight Python-based tool designed for network testing, DNS analysis, and WHOIS information gathering. Built to run seamlessly on Termux and Linux environments.
+A powerful, lightweight, and fast Python-based network utility tool designed for DNS analysis, WHOIS information gathering, and system diagnostics. Fully optimized to run smoothly on **Termux (Android)** and **Linux** environments.
 
 ---
 
 ## 🚀 Features
-* 🔍 **DNS Querying:** Quick and accurate DNS lookups using `dnspython`.
-* 🌐 **WHOIS Lookup:** Fetch detailed domain registration data instantly with `python-whois`.
-* ⚡ **Termux Optimized:** Light on resources, fast execution, and fully compatible with mobile terminal environments.
+* 🔍 **DNS Querying:** Quick and reliable DNS lookups using `dnspython`.
+* 🌐 **WHOIS Lookup:** Fetch domain registration details and host information instantly with `python-whois`.
+* ⚡ **Smart Termux Setup:** Fully optimized for Termux, handles existing directories automatically without throwing errors.
+* 🎨 **Interactive Terminal UI:** User-friendly CLI experience.
 
 ---
 
-## 🛠️ Installation & Setup
+## 🛠️ Quick Installation & Run (Single Command)
 
-To install and set up all required dependencies in Termux, run the following command:
+Copy and paste this smart command into your Termux app. It will automatically detect if you already have the folder, install dependencies, and run the tool instantly:
 
 ```bash
-pkg update && pkg upgrade -y && pkg install python -y && pip install requests dnspython python-whois
+pkg update && pkg upgrade -y && pkg install git python -y && pip install requests dnspython python-whois && ([ -d "ronymx" ] && cd ronymx || git clone [https://github.com/ronymollik32/ronymx.git](https://github.com/ronymollik32/ronymx.git) && cd ronymx) && python ronymx.py
 ```
 
-### How to Run
+---
 
-1. **Clone the repository:**
-   ```bash
+## 📖 Manual Installation
+
+If you prefer to set it up step-by-step:
+
+### 1. Install Requirements & Dependencies
+```bash
+pkg update && pkg upgrade -y
+pkg install git python -y
+pip install requests dnspython python-whois
+```
+
+### 2. Clone the Repository
+```bash
 git clone https://github.com/ronymollik32/ronymx.git
 ```
 
-2. **Navigate to the directory:**
-   ```bash
-   cd ronymx
-   ```
-3. **Run the tool:**
-   ```bash
-   python ronymx.py
-   ```
+### 3. Navigate & Run
+```bash
+cd ronymx
+python ronymx.py
+```
 
 ---
 
 ## 📞 Connect With Me
 
-Have questions, suggestions, or just want to connect? Reach out through any of the platforms below:
+For support, queries, or collaboration, feel free to reach out:
 
-* 💬 **Telegram:** [Join Chat](https://telegram.me/rxrony_xy)
-* 👤 **Facebook:** [Connect on Facebook](https://www.facebook.com/share/1GmfgKzNrY/)
+* 💬 **Telegram:** [rxrony_xy](https://telegram.me/rxrony_xy)
+* 👤 **Facebook:** [Rony Mollik](https://www.facebook.com/share/1GmfgKzNrY/)
 
 ---
 > ⚠️ **Disclaimer:** This tool is developed for educational and security auditing purposes only. The developer is not responsible for any misuse.
-> 
