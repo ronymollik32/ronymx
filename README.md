@@ -23,8 +23,9 @@ pkg update && pkg upgrade -y && pkg install python -y && pip install requests dn
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/ronymollik32/ronymx.git](https://github.com/ronymollik32/ronymx.git)
-   ```
+git clone https://github.com/ronymollik32/ronymx.git
+```
+
 2. **Navigate to the directory:**
    ```bash
    cd ronymx
